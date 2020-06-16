@@ -14,8 +14,8 @@ COPY requirements.txt /app/backend
 RUN pip install --upgrade pip -r requirements.txt
 COPY . /app/backend
 
-COPY entrypoint.sh /app/backend/entrypoint.sh
-RUN chmod +x /app/backend/entrypoint.sh
+RUN chmod +x /app/backend/docker-entrypoint.sh
+ENTRYPOINT ["/app/backend/docker-entrypoint.sh"]
 
 EXPOSE 8000
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
