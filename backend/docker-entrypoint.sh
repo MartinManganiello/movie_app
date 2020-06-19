@@ -2,6 +2,7 @@
 
 echo "Waiting for postgres..."
 
+# I need to use a netcat command here.
 for i in 1 2 3 4 5
 do
   sleep 0.1
