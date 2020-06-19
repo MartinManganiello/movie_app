@@ -7,7 +7,8 @@ ENV PYTHONUNBUFFERED 1
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         postgresql-client \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get install -y netcat
 
 WORKDIR /app/backend
 COPY requirements.txt /app/backend
