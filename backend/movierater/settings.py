@@ -8,10 +8,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'e#-ilqj!%lo8hn505#&q+i!00+5)%&%b_^9x6z&vihu=rbzrc('
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = int(os.environ.get('DEBUG', default=0))
 
 ALLOWED_HOSTS = ['*']
 
@@ -72,10 +72,12 @@ WSGI_APPLICATION = 'movierater.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'root',
+        'ENGINE': os.environ.get('SQL_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': os.environ.get('SQL_DATABASE', os.path.join(
+            BASE_DIR, 'db.sqlite3')
+            ),
+        'USER': os.environ.get('SQL_USER', 'postgres'),
+        'PASSWORD': os.environ.get('SQL_PASSWORD', 'root'),
         'HOST': 'db',
         'PORT': 5432,
     }
