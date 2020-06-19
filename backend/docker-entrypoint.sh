@@ -3,16 +3,10 @@
 echo "Waiting for postgres..."
 
 # I need to use a netcat command here.
-if [ "$DATABASE" = "postgres" ]
-then
-    echo "Waiting for postgres..."
-
-    while ! nc -z $SQL_HOST $SQL_PORT; do
-      sleep 0.1
-    done
-
-    echo "PostgreSQL started"
-fi
+for i in 1 2 3 4 5
+do
+  sleep 0.1
+done
 
 echo "PostgreSQL started"
 
