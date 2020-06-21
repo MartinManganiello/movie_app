@@ -31,7 +31,10 @@ class App extends Component {
   }
 
   loadMovie = movie => {
-    this.setState({ selectedMovie: movie, editedMovie: null })
+    const elementsIndex = this.state.movies.findIndex(element => element.id == movie.id)
+    let newArray = [...this.state.movies];
+    newArray[elementsIndex] = {...newArray[elementsIndex], avg_rating: movie.avg_rating}
+    this.setState({ selectedMovie: movie, editedMovie: null, movies: newArray})
   }
 
   movieDeleted = selMovie => {
